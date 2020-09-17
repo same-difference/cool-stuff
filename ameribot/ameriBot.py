@@ -41,6 +41,8 @@ async def on_ready():
     print("")
     print("hello world, ameriBot speaking!")
 
+    bot.load_extension("basic")
+
 """
 @bot.event
 async def on_message(ctx):
@@ -62,7 +64,7 @@ async def color(ctx):
                     colorHandle(colors[2]), colorHandle(colors[3]), colorHandle(colors[4]), colorHandle(colors[5])))
 
 @bot.command()
-async def set_email(ctx, email):
+async def setemail(ctx, email):
     emailSet = setToFile(ctx, "emails.txt", email)
 
     if emailSet == -1:
