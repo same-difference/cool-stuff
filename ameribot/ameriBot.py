@@ -43,16 +43,6 @@ async def on_ready():
 
     bot.load_extension("basic")
 
-"""
-@bot.event
-async def on_message(ctx):
-    # use this area to server lock some commands
-
-    if ctx.author == bot.user:
-        return
-    print("beep boop {} {}".format(ctx.guild, ctx.guild.id))
-"""
-
 @bot.command()
 async def color(ctx):
     colors = list(range(6))
@@ -71,32 +61,6 @@ async def setemail(ctx, email):
         await ctx.send("You already set your email!")
     elif emailSet == 0:
         await ctx.send("Got it down!")
-        
-    """
-    # if emails.txt doesn't exist, make it
-    if os.path.exists(os.path.join(sys.path[0], "emails.txt")) == False:
-        f = open(os.path.join(sys.path[0], "emails.txt"), "x")
-        f.close()
-    
-    # check if user already created an email
-    f = open(os.path.join(sys.path[0], "emails.txt"), "r")
-    datafile = f.readlines()
-
-    # check if file has contents, if so, scan through it for duplicates
-    if os.path.getsize(os.path.join(sys.path[0], "emails.txt")) != 0:
-        for line in datafile:
-            if str(ctx.author.id) in line:
-                f.close()
-                await ctx.send("You already set your email!")
-                return
-    
-    f.close()
-    # add user email to the list if not present or if file empty
-    f = open(os.path.join(sys.path[0], "emails.txt"), "a")
-    f.write("{}: {}\n".format(ctx.author.id, email))
-    f.close()
-    await ctx.send("Got it down!")
-    """
 
 @bot.command()
 async def getemail(ctx, user: discord.User):
