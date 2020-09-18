@@ -73,7 +73,7 @@ async def getemail(ctx, user: discord.User):
     else:
         await ctx.send("{0.mention}'s email is: {1}".format(user, emailGet))
 
-@bot.command(alias="setkmail")
+@bot.command()
 async def setknightsmail(ctx, kmail):
     kmailSet = setToFile(ctx, "kmails.txt", kmail)
 
@@ -82,7 +82,7 @@ async def setknightsmail(ctx, kmail):
     elif kmailSet == 0:
         await ctx.send("Got it down!")
 
-@bot.command(alias="getkmail")
+@bot.command()
 async def getknightsmail(ctx, user: discord.User):
     kmailGet = getFromFile("kmails.txt", user)
 
@@ -93,8 +93,7 @@ async def getknightsmail(ctx, user: discord.User):
     else:
         await ctx.send("{0.mention}'s knightsmail is: {1}".format(user, kmailGet))
 
-#linkedin
-@bot.command(alias="setlink")
+@bot.command()
 async def setlinkedin(ctx, linkedin):
     linkedSet = setToFile(ctx, "linkedins.txt", linkedin)
 
@@ -103,7 +102,7 @@ async def setlinkedin(ctx, linkedin):
     elif linkedSet == 0:
         await ctx.send("Got it down!")
 
-@bot.command(alias="getlink")
+@bot.command()
 async def getlinkedin(ctx, user:discord.User):
     linkedGet = getFromFile("linkedins.txt", user)
 
@@ -114,8 +113,27 @@ async def getlinkedin(ctx, user:discord.User):
     else:
         await ctx.send("{0.mention}'s linkedin is: {1}".format(user, linkedGet))
 
+@bot.command()
+async def setgithub(ctx, github):
+    gitSet = setToFile(ctx, "githubs.txt", github)
 
-#github
+    if gitSet == -1:
+        await ctx.send("You already set your github!")
+    elif gitSet == 0:
+        await ctx.send("Got it down!")
+
+@bot.command()
+async def getgithub(ctx, user:discord.User):
+    gitGet = getFromFile("githubs.txt", user)
+
+    if gitGet == -1:
+        await ctx.send("Sorry, no one's set their github yet!")
+    elif gitGet == 0:
+        await ctx.send("{0.mention} hasn't set their github yet :sob:".format(user))
+    else:
+        await ctx.send("{0.mention}'s github is: {1}".format(user, gitGet))
+
+
 #resume
 #class schedule
 @bot.command()
