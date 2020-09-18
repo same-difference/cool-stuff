@@ -73,6 +73,32 @@ async def getemail(ctx, user: discord.User):
     else:
         await ctx.send("{0.mention}'s email is: {1}".format(user, emailGet))
 
+#knightsmail
+
+@bot.command()
+async def setknightsmail(ctx, kmail):
+    kmailSet = setToFile(ctx, "kmails.txt", kmail)
+
+    if kmailSet == -1:
+        await ctx.send("You already set your knightsmail!")
+    elif kmailSet == 0:
+        await ctx.send("Got it down!")
+
+@bot.command()
+async def getknightsmail(ctx, user: discord.User):
+    kmailGet = getFromFile("kmails.txt", user)
+
+    if kmailGet == -1:
+        await ctx.send("Sorry, no one's set their knightsmail yet!")
+    elif kmailGet == 0:
+        await ctx.send("{0.mention} hasn't set their knightsmail yet :sob:".format(user))
+    else:
+        await ctx.send("{0.mention}'s knightsmail is: {1}".format(user, kmailGet))
+
+#linkedin
+#github
+#resume
+#class schedule
 @bot.command()
 async def howmuchlonger(ctx):
     dday = datetime.datetime(semEnds[0], semEnds[1], semEnds[2])
